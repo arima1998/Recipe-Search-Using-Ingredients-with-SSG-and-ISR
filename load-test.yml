@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:3000" # Replace with your deployed app URL
+  phases:
+    - duration: 60  # Test duration in seconds
+      arrivalRate: 15  # Number of users per second
+  defaults:
+    headers:
+      Content-Type: "application/json" # Optional: Include if API requires specific headers
+scenarios:
+  - flow:
+      - get:
+          url: "/recipes/639433"  # Test specific recipe page
+      - get:
+          url: "/api/recipes?ingredients=tomato,cheese"  # Test API for ingredient search
+      - get:
+          url: "/metrics"
+      - get:
+          url: "/api/recipes?ingredients=sugar,cheese,flour"
